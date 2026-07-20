@@ -1,7 +1,12 @@
 [project]
 name = "mlmodel"
 version = "0.1.0"
-description = "Add your description here"
+description = "Machine Learning project built for CO7045 - Programming for AI/ML"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "matplotlib>=3.11.1",
+    "pandas>=3.0.3",
+    "scikit-learn>=1.9.0",
+    "seaborn>=0.13.2",
+]
