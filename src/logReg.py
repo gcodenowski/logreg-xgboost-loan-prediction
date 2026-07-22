@@ -55,12 +55,12 @@ ax.plot(fpr, tpr, color='green', label=f"Logistic Regression (AUC = {auc:.4f})",
 ax.set_xlabel("False Positive Rate")
 ax.set_ylabel("True Positive Rate")
 ax.set_title("ROC Curve - Logistic Regression")
-ax.legend(loc="lower right")  # ← this shows the coin flip label
+ax.legend(loc="lower right")
 ax.set_xlim(0, 1)
 ax.set_ylim(0, 1)
 ax.grid(True, alpha=0.3)
 
-plt.savefig("outputs/roc_curve_logreg.png", dpi=150, bbox_inches="tight")  # ← THIS is what saves it
+plt.savefig("outputs/roc_curve_logreg.png", dpi=150, bbox_inches="tight")
 plt.close()
 
 # Summary
