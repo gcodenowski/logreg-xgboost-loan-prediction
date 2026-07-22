@@ -52,7 +52,7 @@ fig, ax = plt.subplots(figsize=(6, 5))
 # Coin flip line (random classifier)
 ax.plot([0, 1], [0, 1], "k--", label="Random Classifier (AUC = 0.50)", linewidth=1)
 
-ax.plot(fpr, tpr, label=f"Logistic Regression (AUC = {auc:.4f})", linewidth=2)
+ax.plot(fpr, tpr, color='green', label=f"Logistic Regression (AUC = {auc:.4f})", linewidth=2)
 ax.set_xlabel("False Positive Rate")
 ax.set_ylabel("True Positive Rate")
 ax.set_title("ROC Curve - Logistic Regression")
