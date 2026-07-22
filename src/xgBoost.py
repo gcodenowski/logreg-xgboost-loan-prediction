@@ -7,7 +7,7 @@ from xgboost import XGBClassifier
 from sklearn.metrics import (
     accuracy_score, precision_score, recall_score,
     f1_score, roc_auc_score, confusion_matrix,
-    ConfusionMatrixDisplay, RocCurveDisplay
+    ConfusionMatrixDisplay, roc_curve
 )
 import matplotlib.pyplot as plt
 import joblib
@@ -50,9 +50,22 @@ plt.savefig("outputs/confusion_matrix_xgboost.png", dpi=150, bbox_inches="tight"
 plt.close()
 
 # ROC curve
-roc_disp = RocCurveDisplay.from_estimator(model, X_test, y_test)
-roc_disp.plot()
-plt.title("ROC Curve - XGBoost")
+fpr, tpr, thresholds = roc_curve(y_test, y_proba)
+
+fig, ax = plt.subplots(figsize=(6, 5))
+
+# Coin flip line (random classifier)
+ax.plot([0, 1], [0, 1], "k--", label="Random Classifier (AUC = 0.50)", linewidth=1)
+
+ax.plot(fpr, tpr, color='blue', label=f"XGBoost (AUC = {auc:.4f})", linewidth=2)
+ax.set_xlabel("False Positive Rate")
+ax.set_ylabel("True Positive Rate")
+ax.set_title("ROC Curve - XGBoost")
+ax.legend(loc="lower right")
+ax.set_xlim(0, 1)
+ax.set_ylim(0, 1)
+ax.grid(True, alpha=0.3)
+
 plt.savefig("outputs/roc_curve_xgboost.png", dpi=150, bbox_inches="tight")
 plt.close()
 

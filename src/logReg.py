@@ -7,9 +7,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import(
         accuracy_score, precision_score, recall_score,
         f1_score, roc_auc_score, confusion_matrix,
-        ConfusionMatrixDisplay
+        ConfusionMatrixDisplay, roc_curve
         )
-from sklearn.metrics import roc_curve
 import matplotlib.pyplot as plt
 import joblib
 
