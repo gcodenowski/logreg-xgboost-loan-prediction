@@ -40,7 +40,8 @@ disp = ConfusionMatrixDisplay(confusion_matrix=cm,
 
 disp.plot(cmap=plt.cm.Greens)
 plt.title("Confusion Matrix - Logistic Regression")
-plt.savefig("outputs/confusion_matrix_logreg.png", dpi=150, bbox_inches="tight")
+plt.savefig("outputs/confusion_matrix_logreg.png", 
+            dpi=150, bbox_inches="tight")
 plt.close()
 
 # ROC curve
@@ -49,9 +50,12 @@ fpr, tpr, thresholds = roc_curve(y_test, y_proba)
 fig, ax = plt.subplots(figsize=(6, 5))
 
 # Coin flip line (random classifier)
-ax.plot([0, 1], [0, 1], "k--", label="Random Classifier (AUC = 0.50)", linewidth=1)
+ax.plot([0, 1], [0, 1], "k--", 
+        label="Random Classifier (AUC = 0.50)", linewidth=1)
 
-ax.plot(fpr, tpr, color='green', label=f"Logistic Regression (AUC = {auc:.4f})", linewidth=2)
+ax.plot(fpr, tpr, color='green', 
+        label=f"Logistic Regression (AUC = {auc:.4f})", linewidth=2)
+
 ax.set_xlabel("False Positive Rate")
 ax.set_ylabel("True Positive Rate")
 ax.set_title("ROC Curve - Logistic Regression")
@@ -70,3 +74,29 @@ print(f"Precision:  {precision:.4f}")
 print(f"Recall:     {recall:.4f}")
 print(f"F1-score:   {f1:.4f}")
 print(f"AUC-ROC:    {auc:.4f}")
+
+# Metrics table
+fig, ax = plt.subplots(figsize=(5, 2))
+ax.axis("tight")
+ax.axis("off")
+ax.set_title("Logistic Regression Metrics", fontsize=12, 
+             fontweight="bold", pad=15)
+
+table_data = [
+    ["Accuracy", f"{accuracy:.2%}"],
+    ["Precision", f"{precision:.4f}"],
+    ["Recall", f"{recall:.4f}"],
+    ["F1-score", f"{f1:.4f}"]
+]
+
+table = ax.table(cellText=table_data, colColours="green", 
+                 colLabels=["Metric", "Value"], loc="center", cellLoc="center")
+table.auto_set_font_size(False)
+table.set_fontsize(10)
+table.scale(1, 1.5)
+table[0, 0].set_facecolor("#2e7d32")
+table[0, 1].set_facecolor("#2e7d32")
+table[0, 0].set_text_props(color="white", fontweight="bold")
+table[0, 1].set_text_props(color="white", fontweight="bold")
+plt.savefig("outputs/metrics_table_logreg.png", dpi=150, bbox_inches="tight")
+plt.close()
