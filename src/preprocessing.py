@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -93,6 +94,24 @@ def preprocess():
     X_train = X_train.drop(columns=["Postcode"])
     X_test = X_test.drop(columns=["Postcode"])
 
+    # Feature engineering - create derived features
+    # Income/Outgoings ratio (spending to earning relationship)
+    X_train["Income/Outgoings_ratio"] = X_train["Income"] / X_train["Outgoings"]
+    X_test["Income/Outgoings_ratio"] = X_test["Income"] / X_test["Outgoings"]
+
+    # Handle division by zero (replace infinite with NaN, fill with median)
+    ratio_median = X_train["Income/Outgoings_ratio"].median()
+    X_train["Income/Outgoings_ratio"] = X_train["Income/Outgoings_ratio"].replace([np.inf, -np.inf], np.nan).fillna(ratio_median)
+    X_test["Income/Outgoings_ratio"] = X_test["Income/Outgoings_ratio"].replace([np.inf, -np.inf], np.nan).fillna(ratio_median)
+
+    # Income per Age (normalise income by applicant age)
+    X_train["Income_per_Age"] = X_train["Income"] / X_train["Age"]
+    X_test["Income_per_Age"] = X_test["Income"] / X_test["Age"]
+
+    # Outgoings per Age (normalise spending by applicant age)
+    X_train["Outgoings_per_Age"] = X_train["Outgoings"] / X_train["Age"]
+    X_test["Outgoings_per_Age"] = X_test["Outgoings"] / X_test["Age"]
+
     # Encode gender
     gender_map = {"a": 0, "b": 1, "c": 2}
     X_train["Gender"] = X_train["Gender"].map(gender_map)
@@ -108,7 +127,7 @@ def preprocess():
     # XGBoost is invariant to scaling
     scaler = StandardScaler()
 
-    numeric_cols = ["Age", "Income", "Outgoings"]
+    numeric_cols = ["Age", "Income", "Outgoings", "Income/Outgoings_ratio", "Income_per_Age", "Outgoings_per_Age"]
     X_train[numeric_cols] = scaler.fit_transform(X_train[numeric_cols])
     X_test[numeric_cols] = scaler.transform(X_test[numeric_cols])
 
