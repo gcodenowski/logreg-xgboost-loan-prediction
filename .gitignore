@@ -8,3 +8,15 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Generated outputs
+outputs/
+
+# Ruff cache
+.ruff_cache/
+
+# macOS
+.DS_Store
+
+# Model files
+*.pkl
