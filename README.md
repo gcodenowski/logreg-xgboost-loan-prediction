@@ -49,3 +49,5 @@ After running either model, you will find:
 - Feature importance plot (XGBoost only)
 
 All outputs are saved to the `outputs/` directory.
+
+![ROC_logreg](outputs/roc_curve_logreg.png)
