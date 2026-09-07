@@ -51,3 +51,4 @@ After running either model, you will find:
 All outputs are saved to the `outputs/` directory.
 
 ![ROC_logreg](outputs/roc_curve_logreg.png)
+<img src="outputs/roc_curve_logreg.png" width="400">
