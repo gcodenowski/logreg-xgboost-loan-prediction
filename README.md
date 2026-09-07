@@ -50,6 +50,10 @@ After running either model, you will find:
 
 All outputs are saved to the `outputs/` directory.
 
+## Report
+
+The critical report of this project is available under `paper/report.pdf/md`.
+
 ## Output Images:
 <img src="outputs/roc_curve_logreg.png" width="400">
 <img src="outputs/roc_curve_xgboost.png" width="400">
