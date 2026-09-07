@@ -53,8 +53,8 @@ All outputs are saved to the `outputs/` directory.
 ## Output Images:
 <img src="outputs/roc_curve_logreg.png" width="400">
 <img src="outputs/roc_curve_xgboost.png" width="400">
-<img src="confusion_matrix_logreg.png" width="400">
-<img src="confusion_matrix_xgboost.png" width="400">
-<img src="metrics_table_logreg.png" width="400">
-<img src="metrics_table_xgboost.png" width="400">
-<img src="feature_importance_xgboost.png" width="400">
+<img src="outputs/confusion_matrix_logreg.png" width="400">
+<img src="outputs/confusion_matrix_xgboost.png" width="400">
+<img src="outputs/metrics_table_logreg.png" width="400">
+<img src="outputs/metrics_table_xgboost.png" width="400">
+<img src="outputs/feature_importance_xgboost.png" width="400">
